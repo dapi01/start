@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SpringMovieList</title>
+</head>
+<body>
+<h2>영화 목록 | <small>무슨 영화를 볼래?</small></h2>
+<div th:each="one:${movies}">
+    <h3 th:text="${one.title}"> </h3>
+    <p>
+        <span th:text="${one.genre}"></span>
+        |
+        <span th:text="${one.releaseDate}"></span>
+    </p>
+</div>
+
+</body>
+</html>
