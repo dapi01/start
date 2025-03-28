@@ -23,7 +23,7 @@ public class RescueAnimalController {
         ResponseEntity<String> response = restTemplate.exchange(
                 "http://apis.data.go.kr/1543061/abandonmentPublicService_v2/abandonmentPublic_v2?ServiceKey=Vw25fQSAsfNycj/AXwgHlM66HYmyfKPkX8pSs7dRqhRB1CqtZvhH0mUoAjue6h3CmrUQTjIBD3mHhflG7pedpA==&_type=json&numOfRows=20&upkind=417000",
                 HttpMethod.GET,
-                null,   // 그외 설정할 헤더값
+                null,   // 그외 설정할 헤더값 - 없으니까 null로설정(3개 설정가능)
                 String.class
         );
 
@@ -40,5 +40,6 @@ public class RescueAnimalController {
         model.addAttribute("body", abandonmentJSON.getResponse().getBody());
         return "rescue-animal/all";
     }
+
 
 }
