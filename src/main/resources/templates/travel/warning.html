@@ -25,7 +25,7 @@
             ( <small th:text="${one.continent}"></small> )
         </div>
 <div>
-    <a th:href="@{/travel/warning/comment}" style="font-size: smaller">더보기</a>
+    <a th:href="@{/travel/warning/detail(isoCode=${one.isoCode})}" style="font-size: smaller">더보기</a>
 </div>
     </div>
 </div>

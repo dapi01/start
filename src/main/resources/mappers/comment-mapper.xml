@@ -10,4 +10,7 @@
     <select id="findByIsoCode" resultType="comment" parameterType="string">
         select * from comments where iso_code=#{isoCode}
     </select>
+    <select id="countByIsoCode" parameterType="string" resultType="int">
+        select count(*) from comments where iso_code=#{isoCode}
+    </select>
 </mapper>

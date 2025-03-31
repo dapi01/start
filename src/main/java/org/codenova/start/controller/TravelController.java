@@ -8,10 +8,7 @@ import org.codenova.start.repository.CommentRepository;
 import org.codenova.start.service.TravelWarningAPIService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,18 +38,20 @@ public class TravelController {
 
         Item item = travelWarningAPIService.findByIsoCode(isoCode);
 
+        model.addAttribute("count", commentRepository.countByIsoCode(isoCode));
         model.addAttribute("comments",commentRepository.findByIsoCode(isoCode));
+
         model.addAttribute("data", item);
 
         return "travel/warning/detail";
     }
 
-    @GetMapping("/warning/comment")
-    public String createHandle(@ModelAttribute Comment comment){
+    @PostMapping("/warning/comment")
+    public String createHandle(@ModelAttribute Comment comment, Model model) throws JsonProcessingException {
 
         commentRepository.create(comment);
 
-        return "redirect:/warning/comment";
+        return "redirect:/travel/warning/detail?isoCode="+comment.getIsoCode();
     }
 
 
